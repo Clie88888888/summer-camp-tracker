@@ -32,7 +32,7 @@
     line-height: 1.6;
     padding: 20px;
   }
-  .container { max-width: 900px; margin: 0 auto; }
+  .container { max-width: 920px; margin: 0 auto; }
 
   /* Header */
   .header {
@@ -43,7 +43,6 @@
     font-size: 28px;
     font-weight: 700;
     letter-spacing: -0.5px;
-    color: var(--text);
   }
   .header h1 span { color: var(--accent); }
   .header p {
@@ -54,7 +53,7 @@
   .header .stats {
     display: flex;
     justify-content: center;
-    gap: 24px;
+    gap: 16px;
     margin-top: 18px;
     flex-wrap: wrap;
   }
@@ -68,9 +67,13 @@
     align-items: center;
     gap: 6px;
   }
-  .stat-item .num { font-weight: 700; font-size: 18px; }
+  .stat-item .num {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--stat-color, var(--accent));
+  }
 
-  /* School Section */
+  /* Section */
   .school-section { margin-bottom: 28px; }
   .school-title {
     font-size: 20px;
@@ -126,7 +129,7 @@
   .col-name { font-weight: 600; }
   .col-deadline { white-space: nowrap; color: var(--muted); font-size: 13px; }
 
-  /* Status Badges */
+  /* Badges */
   .badge {
     display: inline-flex;
     align-items: center;
@@ -143,7 +146,6 @@
   .badge-pending { background: var(--amber-bg); color: #92400e; }
   .badge-draft { background: var(--gray-bg); color: #4b5563; }
   .badge-interview { background: #f0f9ff; color: #0369a1; }
-
   .col-note { color: var(--muted); font-size: 13px; max-width: 200px; }
 
   /* Footer */
@@ -163,7 +165,6 @@
     box-shadow: 0 1px 3px rgba(0,0,0,.06);
   }
 
-  /* Responsive */
   @media (max-width: 640px) {
     body { padding: 12px; }
     .header h1 { font-size: 22px; }
@@ -178,195 +179,44 @@
 <body>
 <div class="container">
 
-  <!-- Header -->
   <div class="header">
     <h1>🏫 <span>陈立业</span> · 夏令营投递</h1>
     <p>📋 记录每一个机会</p>
     <div class="stats">
-      <div class="stat-item">🏆 入营 <span class="num" style="color:var(--green)">2</span></div>
-      <div class="stat-item">✅ 已提交 <span class="num" style="color:var(--blue)">4</span></div>
-      <div class="stat-item">⏳ 进行中 <span class="num" style="color:var(--amber)">5</span></div>
-      <div class="stat-item">❌ 未入营 <span class="num" style="color:var(--red)">2</span></div>
+      
+      <div class="stat-item" style="--stat-color: #10b981">🏆 入营 <span class="num">0</span></div>
+      <div class="stat-item" style="--stat-color: #3b82f6">✅ 已提交 <span class="num">2</span></div>
+      <div class="stat-item" style="--stat-color: #f59e0b">⏳ 待处理 <span class="num">0</span></div>
+      <div class="stat-item" style="--stat-color: #ef4444">❌ 未入营 <span class="num">2</span></div>
     </div>
   </div>
 
-  <!-- 清华大学 -->
+  
   <div class="school-section">
-    <div class="school-title">
-      🎓 清华大学 <span class="badge-count">4</span>
+    <div class="school-title" style="--school-accent: #2563eb">
+      🎓 🎓 清华大学
+      <span class="badge-count">4</span>
     </div>
     <div class="table-wrap">
       <table>
         <thead>
           <tr>
-            <th>学院/专业</th>
-            <th>截止日期</th>
-            <th>状态</th>
-            <th>备注</th>
+            <th>学院/专业</th><th>截止日期</th><th>状态</th><th>备注</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="col-name">工业工程系·体验营</td>
-            <td class="col-deadline">5月28日</td>
-            <td><span class="badge badge-rejected">❌ 未入营</span></td>
-            <td class="col-note">6.6收到拒信</td>
-          </tr>
-          <tr>
-            <td class="col-name">电子工程系·信息光电子开放日</td>
-            <td class="col-deadline">6月10日</td>
-            <td><span class="badge badge-rejected">❌ 未入营</span></td>
-            <td class="col-note">线上活动</td>
-          </tr>
-          <tr>
-            <td class="col-name">深研院SIGS·微纳与智造学域夏令营</td>
-            <td class="col-deadline">6月10日</td>
-            <td><span class="badge badge-submitted">✅ 已报名</span></td>
-            <td class="col-note">7月4-8日深圳线下</td>
-          </tr>
-          <tr>
-            <td class="col-name">精密仪器系·交流日</td>
-            <td class="col-deadline">6月15日</td>
-            <td><span class="badge badge-submitted">✅ 已提交</span></td>
-            <td class="col-note">6.22出结果</td>
-          </tr>
+          <tr><td class="col-name">工业工程系·体验营</td><td class="col-deadline">5月28日</td><td><span class="badge badge-rejected">❌ 未入营</span></td><td class="col-note">6.6收到拒信</td></tr>
+<tr><td class="col-name">电子工程系·信息光电子开放日</td><td class="col-deadline">6月10日</td><td><span class="badge badge-rejected">❌ 未入营</span></td><td class="col-note">线上活动，6.15出结果未入营</td></tr>
+<tr><td class="col-name">深研院SIGS·微纳与智造学域夏令营</td><td class="col-deadline">6月10日</td><td><span class="badge badge-submitted">✅ 已提交</span></td><td class="col-note">7月4-8日深圳线下</td></tr>
+<tr><td class="col-name">精密仪器系·交流日</td><td class="col-deadline">6月15日</td><td><span class="badge badge-submitted">✅ 已提交</span></td><td class="col-note">6.22出结果</td></tr>
+
         </tbody>
       </table>
     </div>
   </div>
 
-  <!-- 北京大学 -->
-  <div class="school-section">
-    <div class="school-title">
-      🏛️ 北京大学 <span class="badge-count">6</span>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>学院/专业</th>
-            <th>截止日期</th>
-            <th>状态</th>
-            <th>备注</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="col-name">计算机学院夏令营</td>
-            <td class="col-deadline">6月15日</td>
-            <td><span class="badge badge-submitted">✅ 已提交</span></td>
-            <td class="col-note">预计六月底公布结果</td>
-          </tr>
-          <tr>
-            <td class="col-name">智能学院夏令营</td>
-            <td class="col-deadline">6月15日</td>
-            <td><span class="badge badge-submitted">✅ 已提交</span></td>
-            <td class="col-note">预计六月底公布结果</td>
-          </tr>
-          <tr>
-            <td class="col-name">电子学院夏令营</td>
-            <td class="col-deadline">6月15日</td>
-            <td><span class="badge badge-submitted">✅ 已提交</span></td>
-            <td class="col-note">预计六月底公布结果</td>
-          </tr>
-          <tr>
-            <td class="col-name">先机学院·先进制造与机器人夏令营</td>
-            <td class="col-deadline">6月25日 12:00</td>
-            <td><span class="badge badge-draft">⏳ 未填报</span></td>
-            <td class="col-note">交电子材料至问卷，150人左右</td>
-          </tr>
-          <tr>
-            <td class="col-name">信息工程学院（深圳）夏令营</td>
-            <td class="col-deadline">6月25日</td>
-            <td><span class="badge badge-draft">⏳ 未填报</span></td>
-            <td class="col-note">需学院盖章，无需推荐信</td>
-          </tr>
-          <tr>
-            <td class="col-name">科学智能学院（深圳）夏令营</td>
-            <td class="col-deadline">7月1日</td>
-            <td><span class="badge badge-draft">⏳ 未填报</span></td>
-            <td class="col-note">—</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- 浙江大学 -->
-  <div class="school-section">
-    <div class="school-title">
-      🏫 浙江大学 <span class="badge-count">1</span>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>学院/专业</th>
-            <th>截止日期</th>
-            <th>状态</th>
-            <th>备注</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="col-name">计算机学院夏令营</td>
-            <td class="col-deadline">6月25日</td>
-            <td><span class="badge badge-interview">⏳ 等待陈文智面试</span></td>
-            <td class="col-note">材料已准备好，7、8月线上做项目</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- 其他 -->
-  <div class="school-section">
-    <div class="school-title">
-      🏢 其他 <span class="badge-count">3</span>
-    </div>
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>学校</th>
-            <th>学院/专业</th>
-            <th>截止日期</th>
-            <th>状态</th>
-            <th>备注</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="col-name">上海创智学院</td>
-            <td>直博生夏令营</td>
-            <td class="col-deadline">5月5日</td>
-            <td><span class="badge badge-accepted">🏆 入营</span></td>
-            <td class="col-note">等待结果</td>
-          </tr>
-          <tr>
-            <td class="col-name">北京中关村学院</td>
-            <td>直博生夏令营</td>
-            <td class="col-deadline">5月</td>
-            <td><span class="badge badge-accepted">🏆 入营</span></td>
-            <td class="col-note">放弃参加</td>
-          </tr>
-          <tr>
-            <td class="col-name">鹏城国家实验室</td>
-            <td>直博生夏令营</td>
-            <td class="col-deadline">6月30日 15:00</td>
-            <td><span class="badge badge-draft">⏳ 未填报</span></td>
-            <td class="col-note">需学院盖章，7月3日前邮件通知入营</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- Footer -->
   <div class="footer">
-    <div class="update-info">
-      🕐 最后更新：2026年6月16日
-    </div>
+    <div class="update-info">🕐 最后更新：2026年06月16日</div>
     <p style="margin-top: 12px;">Made with ❤️</p>
   </div>
 

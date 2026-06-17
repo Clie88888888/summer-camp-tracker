@@ -207,7 +207,7 @@ def render_html(schools, stats):
         school_html_parts.append(f"""
   <div class="school-section">
     <div class="school-title" style="--school-accent: {school_accent}">
-      {school_emoji} {escape_html(title_display)}
+      {escape_html(title_display)}
       <span class="badge-count">{count}</span>
     </div>
     <div class="table-wrap">

@@ -28,14 +28,14 @@ SCHOOL_COLORS = {
 
 # === 状态对应的 CSS class ===
 STATUS_CLASS = {
-    "🏆": "badge-accepted",
+    "🎉": "badge-accepted",
     "✅": "badge-submitted",
     "⏳": "badge-pending",
     "❌": "badge-rejected",
 }
 
 STATUS_LABEL = {
-    "🏆": "🏆 入营",
+    "🎉": "🎉 入营",
     "✅": "✅ 已提交",
     "❌": "❌ 未入营",
     "⏳": "⏳ 待处理",
@@ -110,9 +110,13 @@ def parse_markdown():
 
                 # 解析状态
                 status_text = entry["status_raw"]
-                if status_text.startswith("🏆"):
-                    entry["status_icon"] = "🏆"
-                    entry["status_label"] = "🏆 入营"
+                if status_text.startswith("🎉"):
+                    entry["status_icon"] = "🎉"
+                    rest = status_text[1:].strip()
+                    if rest and rest != "入营":
+                        entry["status_label"] = f"🎉 {rest}"
+                    else:
+                        entry["status_label"] = "🎉 入营"
                 elif status_text.startswith("✅"):
                     entry["status_icon"] = "✅"
                     entry["status_label"] = "✅ 已提交"
@@ -122,7 +126,7 @@ def parse_markdown():
                 elif status_text.startswith("⏳"):
                     entry["status_icon"] = "⏳"
                     rest = status_text[1:].strip()
-                    if rest and rest != "未填报":
+                    if rest:
                         entry["status_label"] = f"⏳ {rest}"
                     else:
                         entry["status_label"] = "⏳ 待处理"
@@ -145,7 +149,7 @@ def parse_markdown():
 
 def compute_stats(schools):
     """计算统计数字"""
-    stats = {"🏆": 0, "✅": 0, "⏳": 0, "❌": 0}
+    stats = {"🎉": 0, "✅": 0, "⏳": 0, "❌": 0}
     for school in schools:
         for entry in school["entries"]:
             icon = entry["status_icon"]
@@ -228,7 +232,7 @@ def render_html(schools, stats):
 
     # 统计摘要
     stats_html = f"""
-      <div class="stat-item" style="--stat-color: #10b981">🏆 入营 <span class="num">{stats["🏆"]}</span></div>
+      <div class="stat-item" style="--stat-color: #10b981">🎉 入营 <span class="num">{stats["🎉"]}</span></div>
       <div class="stat-item" style="--stat-color: #3b82f6">✅ 已提交 <span class="num">{stats["✅"]}</span></div>
       <div class="stat-item" style="--stat-color: #f59e0b">⏳ 待处理 <span class="num">{stats["⏳"]}</span></div>
       <div class="stat-item" style="--stat-color: #ef4444">❌ 未入营 <span class="num">{stats["❌"]}</span></div>"""
@@ -443,8 +447,8 @@ def build_and_deploy():
     print(f"   解析到 {len(schools)} 个学校，共 {total} 条记录")
 
     stats = compute_stats(schools)
-    acc, sub, pend, rej = stats["🏆"], stats["✅"], stats["⏳"], stats["❌"]
-    print(f"   统计：🏆{acc} ✅{sub} ⏳{pend} ❌{rej}")
+    acc, sub, pend, rej = stats["🎉"], stats["✅"], stats["⏳"], stats["❌"]
+    print(f"   统计：🎉{acc} ✅{sub} ⏳{pend} ❌{rej}")
 
     print("🎨 生成 HTML...")
     html = render_html(schools, stats)
